@@ -538,11 +538,6 @@ export struct FollowView {
       }
       .accessibilityLevel('no')
       .hitTestBehavior(HitTestMode.None)
-      if (this.recentVm.forums.length > 0) {
-        ListItem() {
-          this.RecentForumsSection()
-        }.id('follow-guest-recent-section')
-      }
       ListItem() {
         this.SectionHeader('我的关注')
       }.id('follow-guest-section-title')
@@ -578,7 +573,6 @@ export struct FollowView {
 
   private forumGroupIndex(): number {
     let idx: number = 1;
-    if (this.recentVm.forums.length > 0) { idx++; }
     idx++;
     if (this.vm.errorText.length > 0) { idx++; }
     return idx;
@@ -650,11 +644,6 @@ export struct FollowView {
       }
       .accessibilityLevel('no')
       .hitTestBehavior(HitTestMode.None)
-      if (this.recentVm.forums.length > 0) {
-        ListItem() {
-          this.RecentForumsSection()
-        }.id('follow-recent-section')
-      }
       ListItem() {
         this.SectionHeader('我的关注')
       }.id('follow-section-title')
