@@ -1912,11 +1912,15 @@ export struct ImageViewer {
       }
       // 常显小胶囊只接住自身触摸；图片仍可缩放、翻页和单击关闭。
       if (this.exportOpen && !this.menuHidden && !smartReachStore.imageMenuLongPress) {
-        ImageMenuPosition({ viewportWidth: this.viewerWidth, viewportHeight: this.viewerHeight,
-          capsuleHeight: superResolutionStore.enabled ? 200 : 162, bottomInset: this.bottomSafeVp,
-          busy: this.exportBusy.length > 0, content: (): void => { this.ExportSheet() } })
-          .opacity(this.chromeOpacity)
-          .transition(imageFadeTransition())
+        Stack() {
+          ImageMenuPosition({ viewportWidth: this.viewerWidth, viewportHeight: this.viewerHeight,
+            capsuleHeight: superResolutionStore.enabled ? 200 : 162, bottomInset: this.bottomSafeVp,
+            busy: this.exportBusy.length > 0, content: (): void => { this.ExportSheet() } })
+        }
+        .width('100%').height('100%')
+        .hitTestBehavior(HitTestMode.Transparent)
+        .opacity(this.chromeOpacity)
+        .transition(imageFadeTransition())
       }
       if (smartReachStore.imageMenuLongPress && this.menuRevealed) {
         this.BottomExportSheet()
